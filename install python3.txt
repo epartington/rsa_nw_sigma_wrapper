@@ -1,0 +1,21 @@
+yum install epel-release
+yum install python36
+python -m ensurepip --default-pip
+python36 sigmac
+
+https://www.nextron-systems.com/2018/02/10/write-sigma-rules/
+
+python36 sigmac -t netwitness ../rules/network/net_mal_dns_cobaltstrike.yml
+(query contains 'aaa\.stage\.', 'post\.1')
+[root@docker tools]# python36 sigmac -t netwitness ../rules/network/net_susp_dns_b64_queries.yml
+(query contains '==\.')
+[root@docker tools]# python36 sigmac -t netwitness ../rules/network/net_susp_dns_txt_exec_strings.yml
+(answer contains 'IEX', 'Invoke-Expression', 'cmd\.exe')
+
+
+
+https://github.com/Neo23x0/sigma/wiki/Specification
+
+https://www.nextron-systems.com/2018/02/10/write-sigma-rules/
+
+https://github.com/Neo23x0/sigma

@@ -1,0 +1,183 @@
+logsources:
+  linux:
+    product: linux
+    conditions:
+      device.class: rhlinux
+  linux-sshd:
+    product: linux
+    service: sshd
+    conditions:
+      device.class: rhlinux
+      client: sshd
+  linux-auth:
+    product: linux
+    service: auth
+    conditions:
+      device.class: rhlinux
+  linux-clamav:
+    product: linux
+    service: clamav
+    conditions:
+      device.class: rhlinux
+  windows-sys:
+    product: windows
+    service: sysmon
+    conditions:
+      device.class: windows hosts
+      event.source: microsoft-windows-sysmon
+  windows-power:
+    product: windows
+    service: powershell
+    conditions:
+      device.class: windows hosts
+  windows-dhcp:
+    product: windows
+    service: dhcp
+    conditions: 
+      device.type: winevent_nic
+      event.source: microsoft-windows-dhcp-server
+  windows-sec:
+    product: windows
+    service: security
+    conditions:
+      device.class: windows hosts
+      event.source: microsoft-windows-security-auditing
+  windows-system:
+    product: windows
+    service: system
+    conditions:
+      device.class: windows hosts
+  proxy:
+    product: proxy
+    conditions:
+      device.class: proxy
+  #antivirus:
+    #product: antivirus
+    #conditions:
+      #device.class: anti virus
+fieldmappings:
+  dst:
+    - ip.dst
+  dst_ip:
+    - ip.dst
+  src:
+    - ip.src
+  src_ip:
+    - ip.src
+  DestinationPort:
+    - port.dst
+  EventID:
+    - reference.id
+  NewProcessName:
+    - process
+  LogonType:
+    - logon.type
+  AccountName:
+    - user.dst
+  c-uri-extension:
+    - extension
+  UserAgent:
+    - user.agent
+  r-dns:
+    - alias.host
+  DestinationHostname:
+    - alias.host
+  Host:
+    - alias.host
+  c-uri-query:
+    - web.page
+  URL:
+    - web.page
+  HttpMethod:
+    - action
+  Cookie:
+    - web.cookie
+  SubjectUserName:
+    - user.dst
+  answer:
+    - dns.responsetext
+  CommandLine:
+    - param
+  ProcessCommandLine:
+    - param
+  ServiceName:
+    - service.name
+  Image:
+    - process
+  ParentImage:
+    - process.src
+  TargetObject:
+    - process
+  Command:
+    - param
+  ServiceFileName:
+    - username
+  PipeName:
+    - process
+  TargetFilename:
+    - filename
+  Service:
+    - service.name
+  c-uri-path:
+    - directory
+  cs-uri-query:
+    - query
+  cs-uri-stem:
+    - alias.host
+  AuthenticationPackageName:
+    - auth.method
+  WorkstationName:
+    - alias.host
+  ShareName:
+    - obj.name
+  LogonProcessName:
+    - process
+  ObjectName:
+    - obj.name
+  ObjectValueName:
+    - obj.val
+  Properties:
+    - fld54
+  AuditPolicyChanges:
+    - policy.value
+  Status:
+    - result.code
+  FailureCode:
+    - result.code
+  ProcessName:
+    - process
+  AccessMask:
+    - fld52
+  ObjectType:
+    - obj.type
+  TicketOptions:
+    - fld26
+  TicketEncryptionType:
+    - crypto
+  GroupName:
+    - group
+  Signature:
+    - virusname
+  FileName:
+    - filename
+  User:
+    - user.dst
+  EngineVersion:
+    - fld5
+  SourceImage:
+    - parent.process
+  TargetImage:
+    - process
+  Details:
+    - fld16
+  ParentCommandLine:
+    - parent.param
+  ImageLoaded:
+    EventID=1:
+        - process
+    EventID=13:
+        - event.desc
+    EventID=6:
+        - filename
+    EventID=7:
+        - event.desc
